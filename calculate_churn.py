@@ -77,7 +77,10 @@ class ReadData():
                 
 
     def get_best_points(self):
-        
+        '''
+        Prints the correctness when predicting the outcome of the target set by using the 
+        total_day_minutes and total_eve_minutes attributes of the data
+        '''
         
         predictions = self.predict_churn(self._target_total_day_minutes, self._target_total_eve_minutes,\
              self._total_day_minutes,self._total_eve_minutes, 10)   
@@ -89,6 +92,10 @@ class ReadData():
 
 
     def distance(self, point1, point2):
+        '''
+        returns the distance between two points 
+        '''
+
         x1, y1 = point1
         x2, y2 = point2
         return np.sqrt(np.square(x1-x2) + np.square(y1-y2))
@@ -111,7 +118,7 @@ class ReadData():
                 distances[customer] = self.distance(point1, point2)
 
             indices = np.argsort(distances)
-            indices = indices[:number_neighbors]    #10 is the number of nearest elements we are looking at
+            indices = indices[:number_neighbors]    
             churn = self._churn[indices]
             if np.count_nonzero(churn) == number_neighbors/2:
                 choice = random.choice([0,1])
@@ -125,6 +132,10 @@ class ReadData():
         
 
     def graph_data(self, training_1, training_2, point_target):
+        '''
+        given x coordinates, y coordinates, and a point, this function graphs them and sorts 
+        by classification
+        '''
         churn_1 = []
         churn_2 =[]
         not_churn_1 = []
@@ -149,8 +160,8 @@ class ReadData():
 
 
 if __name__ == '__main__':
-    file = 'C:\Churn\src\churn.csv'
-    target_file = 'C:\Churn\src\churn_target.csv'
+    file = 'churn.csv'
+    target_file = 'churn_target.csv'
     data = ReadData(file, target_file)
     
     data.get_best_points()
