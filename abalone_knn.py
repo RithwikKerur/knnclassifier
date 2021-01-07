@@ -106,8 +106,8 @@ class ReadData():
 
 
 def run():
-    file_name = 'C:\\ML projects\\abalone\\abalone.csv'
-    target_name = 'C:\\ML projects\\abalone\\abalone_target.csv'
+    file_name = 'abalone.csv'
+    target_name = 'abalone_target.csv'
     data = ReadData(file_name, target_name)
     
     data.get_best_predictions()
